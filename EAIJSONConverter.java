@@ -33,27 +33,27 @@ public class EAIJSONConverter extends com.siebel.eai.SiebelBusinessService {
 
 public void doInvokeMethod(String methodName, SiebelPropertySet input,SiebelPropertySet output) throws SiebelBusinessServiceException{
 
-if(methodName.equals("PropSetToJSON")){
-JsonObject myJSON = new JsonObject();
-myJSON = traversePS(input,myJSON);
-output.setValue(myJSON.toString());
-}
+	if(methodName.equals("PropSetToJSON")){
+		JsonObject myJSON = new JsonObject();
+		myJSON = traversePS(input,myJSON);
+		output.setValue(myJSON.toString());
+	}
 
 
-if(methodName.equals("JSONToPropSet")){
-	JsonObject obj = new JsonObject();
-	obj = new Gson().fromJson(input.getValue(), JsonObject.class);
-	SiebelPropertySet op = new SiebelPropertySet();
-	output.addChild(JsonObjectToPropertySet(obj,op));
-}	
+	if(methodName.equals("JSONToPropSet")){
+		JsonObject obj = new JsonObject();
+		obj = new Gson().fromJson(input.getValue(), JsonObject.class);
+		SiebelPropertySet op = new SiebelPropertySet();
+		output.addChild(JsonObjectToPropertySet(obj,op));
+	}	
 
 }
 
 public SiebelPropertySet temp(Map MapObject){
-Iterator iterator = MapObject.entrySet().iterator();
-SiebelPropertySet op = new SiebelPropertySet();
-SiebelPropertySet psw = new SiebelPropertySet();
-String str2 = "something";
+	Iterator iterator = MapObject.entrySet().iterator();
+	SiebelPropertySet op = new SiebelPropertySet();
+	SiebelPropertySet psw = new SiebelPropertySet();
+	String str2 = "something";
 
 	while (iterator.hasNext()) {
 		Map.Entry mapEntry = (Map.Entry) iterator.next();
@@ -116,26 +116,26 @@ public static SiebelPropertySet JsonObjectToPropertySet(JsonObject obj, SiebelPr
 
 
 public JsonObject traversePS(SiebelPropertySet ps,JsonObject jObj){
-JsonObject siebJSON = new JsonObject();
-String propName;
-String propVal;
-propName = ps.getFirstProperty();
+	JsonObject siebJSON = new JsonObject();
+	String propName;
+	String propVal;
+	propName = ps.getFirstProperty();
 
-while (propName != "") {
-propVal = ps.getProperty(propName);
-siebJSON.addProperty(propName,propVal);
-propName = ps.getNextProperty();
-}
+	while (propName != "") {
+		propVal = ps.getProperty(propName);
+		siebJSON.addProperty(propName,propVal);
+		propName = ps.getNextProperty();
+	}
 
-JsonObject child;
-for (int i = 0; i < ps.getChildCount(); i++){
-child = new JsonObject();
-child = traversePS(ps.getChild(i),child);
-siebJSON.add(ps.getChild(i).getType(),child);
-}
+	JsonObject child;
+	for (int i = 0; i < ps.getChildCount(); i++){
+		child = new JsonObject();
+		child = traversePS(ps.getChild(i),child);
+		siebJSON.add(ps.getChild(i).getType(),child);
+	}
 
 
 
-return siebJSON;
+	return siebJSON;
 }
 }
