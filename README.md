@@ -16,4 +16,6 @@ Siebel.jar
 
 Developed & tested on JDK 1.5 
 
+How to update the code : https://github.com/Jimjson/Siebel-EAI-JSON-Converter/wiki/How-to-make-changes%3F
+
 For demo and how to set up guides visit : http://howtosiebel.blogspot.com
