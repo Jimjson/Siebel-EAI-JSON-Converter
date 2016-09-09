@@ -93,7 +93,15 @@ public static SiebelPropertySet JsonObjectToPropertySet(JsonObject obj, SiebelPr
 						if(jsonArray.get(i).isJsonObject() || jsonArray.get(i).isJsonArray()){
 							SiebelPropertySet temp = new SiebelPropertySet();
 							temp.setType("" + i);
-							child.addChild(JsonObjectToPropertySet(jsonArray.get(i).getAsJsonObject(),temp));
+							if (jsonArray.get(i).isJsonObject())
+							  child.addChild(JsonObjectToPropertySet(jsonArray.get(i).getAsJsonObject(),temp));
+							else 
+							{	
+								JsonObject aux= new JsonObject();
+								aux.add(""+i, jsonArray.get(i));
+								child.addChild(JsonObjectToPropertySet(aux,temp));
+									
+							}
 						}
 						else
 							child.setProperty("" + i, jsonArray.get(i).getAsString());
@@ -128,14 +136,46 @@ public JsonObject traversePS(SiebelPropertySet ps,JsonObject jObj){
 	}
 
 	JsonObject child;
+	
 	for (int i = 0; i < ps.getChildCount(); i++){
 		child = new JsonObject();
-		child = traversePS(ps.getChild(i),child);
-		siebJSON.add(ps.getChild(i).getType(),child);
+
+
+		if (ps.getChild(i).getType().startsWith("ListOf-"))
+			
+		{	JsonArray ja=new JsonArray();
+			for (int o=0 ;o<ps.getChild(i).getChildCount();o++)
+			{ 
+			      ja.add(traversePS(ps.getChild(i).getChild(o),child));
+			} 
+			siebJSON.add(ps.getChild(i).getType().substring(7),ja);
+		}
+		else if (ps.getChild(i).getType().startsWith("StringList-"))
+
+		{	JsonArray ja=new JsonArray();
+            		SiebelPropertySet auxps=ps.getChild(i);
+			Enumeration e = auxps.getPropertyNames();
+            		List list = Collections.list(e);
+            		Collections.sort(list);
+            		e=Collections.enumeration(list) ;
+
+			while (e.hasMoreElements()) {
+                		String propName1=(String) e.nextElement();
+				ja.add(new JsonPrimitive(auxps.getProperty(propName1)));
+            		}
+			siebJSON.add(auxps.getType().substring(11),ja);
+		}
+		else 
+		{	
+			child = traversePS(ps.getChild(i),child);
+  	     		siebJSON.add(ps.getChild(i).getType(),child);
+		}
 	}
 
 
 
 	return siebJSON;
+}
+
 }
 }
