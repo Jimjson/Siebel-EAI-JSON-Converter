@@ -167,5 +167,5 @@ public class EAIJSONConverter extends com.siebel.eai.SiebelBusinessService
 }
 
 /*
-"C:\Program Files\Java\jdk1.7.0_21\bin\javac.exe" -cp "C:\Users\igor_v\Documents\EAIJSONConverter\*" "C:\Users\igor_v\Documents\EAIJSONConverter\EAIJSONConverter.java"
+"C:\Program Files\Java\jdk1.7.0_21\bin\javac.exe" -cp "C:\Users\...\Documents\EAIJSONConverter\*" "C:\Users\...\Documents\EAIJSONConverter\EAIJSONConverter.java"
 */
