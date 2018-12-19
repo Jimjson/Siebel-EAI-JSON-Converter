@@ -12,8 +12,8 @@ Service Provides two methods:
 2. JSONToPropSet
 
 Dependencies:
-gson-2.2.4.jar
-Siebel.jar
+- gson-2.2.4.jar
+- Siebel.jar
 
 Developed & tested on JDK 1.5
 
