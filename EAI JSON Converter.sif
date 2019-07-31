@@ -1,23 +1,17 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <REPOSITORY
    NAME="Siebel Repository"
-   UPDATED="02/26/2013 06:37:22"
    UPDATED_BY="SADMIN"
-   CREATED="02/26/2013 02:17:16"
    CREATED_BY="SADMIN"
    FIO_PLACEHOLDER_FIO="TRUE">
 	<PROJECT
 	   ALLOW_OBJECT_LOCKING="Y"
+	   COMMENTS="Business Services for EAI"
 	   INACTIVE="N"
-	   LANGUAGE_LOCKED="ENU"
-	   LOCKED="Y"
-	   LOCKED_DATE="10/29/2013 14:39:28"
-	   NAME="Test"
+	   LOCKED="N"
+	   NAME="EAI Business Services"
 	   UI_FREEZE="N"
-	   LOCKED_BY_NAME="SADMIN"
-	   UPDATED="12/14/2013 05:09:59"
-	   UPDATED_BY="SADMIN"
-	   CREATED="02/14/2006 02:33:22"
+ 	   UPDATED_BY="VIF"
 	   CREATED_BY="SADMIN"
 	   FIO_PLACEHOLDER_FIO="TRUE">
 		<BUSINESS_SERVICE
@@ -27,25 +21,496 @@
 		   HIDDEN="N"
 		   INACTIVE="N"
 		   NAME="EAI JSON Converter"
-		   OBJECT_LANGUAGE_LOCKED="ENU"
+		   OBJECT_LANGUAGE_LOCKED="HEB"
 		   OBJECT_LOCKED="Y"
-		   OBJECT_LOCKED_DATE="11/01/2013 07:11:40"
 		   SERVER_ENABLED="N"
 		   STATE_MANAGEMENT_TYPE="Stateful"
 		   WEB_SERVICE_ENABLED="N"
-		   OBJECT_LOCKED_BY_NAME="SADMIN"
-		   UPDATED="11/01/2013 07:12:06"
-		   UPDATED_BY="SADMIN"
-		   CREATED="11/01/2013 07:11:26"
-		   CREATED_BY="SADMIN">
+		   OBJECT_LOCKED_BY_NAME="VIF"
+		   UPDATED_BY="VIF"
+		   CREATED_BY="VIF">
+			<BUSINESS_SERVICE_METHOD
+			   COMMENTS="Create Siebel archive file with IO created on base SiebelMessage. It file may be imported by SiebelTools"
+			   HIDDEN="N"
+			   INACTIVE="N"
+			   NAME="CreateIO"
+			   UPDATED_BY="VIF"
+			   CREATED_BY="VIF">
+				<BUSINESS_SERVICE_METHOD_ARG
+				   COMMENTS="Field External Name of IO"
+				   DATA_TYPE="String"
+				   HIDDEN="N"
+				   INACTIVE="N"
+				   NAME="External Name"
+				   OPTIONAL="N"
+				   STORAGE_TYPE="Property"
+				   TYPE="Input"
+				   UPDATED_BY="VIF"
+				   CREATED_BY="VIF">
+				</BUSINESS_SERVICE_METHOD_ARG>
+				<BUSINESS_SERVICE_METHOD_ARG
+				   COMMENTS="New IO Name"
+				   DATA_TYPE="String"
+				   HIDDEN="N"
+				   INACTIVE="N"
+				   NAME="Integration Object Name"
+				   OPTIONAL="N"
+				   STORAGE_TYPE="Property"
+				   TYPE="Input"
+				   UPDATED_BY="VIF"
+				   CREATED_BY="VIF">
+				</BUSINESS_SERVICE_METHOD_ARG>
+				<BUSINESS_SERVICE_METHOD_ARG
+				   COMMENTS="List of enabled projects"
+				   DATA_TYPE="String"
+				   HIDDEN="N"
+				   INACTIVE="N"
+				   NAME="Project Name"
+				   OPTIONAL="N"
+				   PICK_FIELD="Name"
+				   PICKLIST="Repository PickList Project/Project"
+				   STORAGE_TYPE="Property"
+				   TYPE="Input"
+				   UPDATED_BY="VIF"
+				   CREATED_BY="VIF">
+				</BUSINESS_SERVICE_METHOD_ARG>
+				<BUSINESS_SERVICE_METHOD_ARG
+				   COMMENTS="Name of file for saving sif. Default C:\&lt;Integration Object Name&gt;.sif"
+				   DATA_TYPE="String"
+				   HIDDEN="N"
+				   INACTIVE="N"
+				   NAME="Save As"
+				   OPTIONAL="Y"
+				   STORAGE_TYPE="Property"
+				   TYPE="Input"
+				   UPDATED_BY="VIF"
+				   CREATED_BY="VIF">
+				</BUSINESS_SERVICE_METHOD_ARG>
+				<BUSINESS_SERVICE_METHOD_ARG
+				   COMMENTS="Hierarchi on base it generated IO"
+				   DATA_TYPE="Hierarchy"
+				   HIDDEN="N"
+				   INACTIVE="N"
+				   NAME="SiebelMessage"
+				   OPTIONAL="N"
+				   STORAGE_TYPE="Hierarchy"
+				   TYPE="Input"
+				   UPDATED_BY="VIF"
+				   CREATED_BY="VIF">
+				</BUSINESS_SERVICE_METHOD_ARG>
+			</BUSINESS_SERVICE_METHOD>
+			<BUSINESS_SERVICE_METHOD
+			   HIDDEN="N"
+			   INACTIVE="N"
+			   NAME="JSONToPropSet"
+			   UPDATED_BY="VIF"
+			   CREATED_BY="VIF">
+				<BUSINESS_SERVICE_METHOD_ARG
+				   DATA_TYPE="String"
+				   HIDDEN="N"
+				   INACTIVE="N"
+				   NAME="&lt;Value&gt;"
+				   OPTIONAL="N"
+				   STORAGE_TYPE="Value"
+				   TYPE="Input"
+				   UPDATED_BY="VIF"
+				   CREATED_BY="VIF">
+				</BUSINESS_SERVICE_METHOD_ARG>
+				<BUSINESS_SERVICE_METHOD_ARG
+				   DATA_TYPE="Hierarchy"
+				   HIDDEN="N"
+				   INACTIVE="N"
+				   NAME="SiebelMessage"
+				   OPTIONAL="N"
+				   STORAGE_TYPE="Hierarchy"
+				   TYPE="Output"
+				   UPDATED_BY="VIF"
+				   CREATED_BY="VIF">
+				</BUSINESS_SERVICE_METHOD_ARG>
+			</BUSINESS_SERVICE_METHOD>
+			<BUSINESS_SERVICE_METHOD
+			   HIDDEN="N"
+			   INACTIVE="N"
+			   NAME="PropSetToJSON"
+			   UPDATED_BY="VIF"
+			   CREATED_BY="VIF">
+				<BUSINESS_SERVICE_METHOD_ARG
+				   DATA_TYPE="String"
+				   HIDDEN="N"
+				   INACTIVE="N"
+				   NAME="&lt;Value&gt;"
+				   OPTIONAL="N"
+				   STORAGE_TYPE="Value"
+				   TYPE="Input"
+				   UPDATED_BY="VIF"
+				   CREATED_BY="VIF">
+				</BUSINESS_SERVICE_METHOD_ARG>
+			</BUSINESS_SERVICE_METHOD>
+			<BUSINESS_SERVICE_SERVER_SCRIPT
+			   INACTIVE="N"
+			   NAME="(declarations)"
+			   PROGRAM_LANGUAGE="JS"
+			   SCRIPT="//Your public declarations go here...  
+"
+			   SEQUENCE="1"
+			   UPDATED_BY="VIF"
+			   CREATED_BY="VIF">
+			</BUSINESS_SERVICE_SERVER_SCRIPT>
+			<BUSINESS_SERVICE_SERVER_SCRIPT
+			   INACTIVE="N"
+			   NAME="CalculateIcName"
+			   PROGRAM_LANGUAGE="JS"
+			   SCRIPT="function CalculateIcName(IO:PropertySet, baseName)
+{
+/*
+in ps IO search child with property &quot;NAME&quot; = baseName
+If not found - return baseName. If found, search all instanses with &quot;NAME&quot; = baseName_[any number].
+If not found - return baseName_0, if found return baseName_[max founded + 1]
+*/
+	var thisFunctionName = &quot;CalculateIcName&quot;
+	var nextIndex = 0;
+	var re = new RegExp(&quot;^&quot; + baseName + &quot;($|_(\\d+)$)&quot;); // $|_(\\d+)$ - end of string or _ + digits + end of string. Brackets in (\\d+) - for get digits
+	var name = &quot;&quot;;
+	var num = 0;
+	var numNew = -1;
+	for (var j = 0; j &lt; IO.GetChildCount(); j++)
+	{
+		name = IO.GetChild(j).GetProperty(&quot;NAME&quot;)
+		if (re.test(name))
+		{
+			num = name.match(re)[2]; // Get digits after &quot;_&quot; in found string and convert to number Number(undefined) = 0
+			num = (num === undefined) ? -1 : Number(num);
+			numNew = Math.max(numNew, num + 1);
+		}
+	}
+	re = null;
+	if (numNew == -1)
+		return baseName;
+	else
+		return baseName + &quot;_&quot; + numNew;
+}"
+			   SEQUENCE="2"
+			   UPDATED_BY="VIF"
+			   CREATED_BY="VIF">
+			</BUSINESS_SERVICE_SERVER_SCRIPT>
+			<BUSINESS_SERVICE_SERVER_SCRIPT
+			   INACTIVE="N"
+			   NAME="CreateIO"
+			   PROGRAM_LANGUAGE="JS"
+			   SCRIPT="function CreateIO(obj:PropertySet, ioName, ioExternalName, projectName, fileName)
+{
+/*
+	Function create file &lt;fileName&gt;.sif with IO &lt;ioName&gt; for create instanse of IO on base obj. IO related to project projectName 
+	and have External Name and Root IC &lt;ioExternalName&gt;
+*/
+	var thisFunctionName = &quot;CreateIO&quot;;
+	var ips:PropertySet;
+	var ops:PropertySet;
+
+	var ps_REPOSITORY:PropertySet;
+	var ps_PROJECT:PropertySet;
+	var ps_IO:PropertySet;
+	var resultXml = &quot;&quot;;
+//var outputFilePointer = null;
+	ps_REPOSITORY = TheApplication().NewPropertySet();
+	ps_PROJECT = TheApplication().NewPropertySet();
+	ps_IO = TheApplication().NewPropertySet();
+
+	ps_REPOSITORY.AddChild(ps_PROJECT);
+	ps_PROJECT.AddChild(ps_IO);
+
+	ps_REPOSITORY.SetType(&quot;REPOSITORY&quot;);
+	ps_REPOSITORY.SetProperty(&quot;NAME&quot;, &quot;Siebel Repository&quot;);
+	ps_REPOSITORY.SetProperty(&quot;FIO_PLACEHOLDER_FIO&quot;, &quot;TRUE&quot;);
+	
+	ps_PROJECT.SetType(&quot;PROJECT&quot;);
+	ps_PROJECT.SetProperty(&quot;NAME&quot;, projectName);
+	ps_PROJECT.SetProperty(&quot;FIO_PLACEHOLDER_FIO&quot;, &quot;TRUE&quot;);
+	
+	ps_IO.SetType(&quot;INTEGRATION_OBJECT&quot;);
+	ps_IO.SetProperty(&quot;BASE_OBJECT_TYPE&quot;, &quot;XML&quot;);
+	ps_IO.SetProperty(&quot;EXTERNAL_NAME&quot;, ioExternalName);
+	ps_IO.SetProperty(&quot;NAME&quot;, ioName);
+	ps_IO.SetProperty(&quot;INACTIVE&quot;,&quot;N&quot;);
+
+	ips = TheApplication().NewPropertySet();
+	ips.AddChild(obj);
+
+	NewIntegrationComponent(ps_IO, ips, /*ExternalNameContext*/&quot;&quot;, /*parentIcName:*/&quot;&quot;, /*ExternalSequence*/10);
+
+	ips.Reset()
+	ops = TheApplication().NewPropertySet();
+	ips.AddChild(ps_REPOSITORY);
+	ips.SetProperty(&quot;Tags on Separate Lines&quot;, &quot;false&quot;)
+	ips.SetProperty(&quot;EscapeNames&quot;, &quot;false&quot;);
+	TheApplication().GetService(&quot;&quot; + &quot;XML Converter (Data in Child PropSet)&quot;).InvokeMethod(&quot;PropSetToXML&quot;, ips, ops);
+
+	//SIF has some differences from the standard XML file. Therefore adding the end of the line after &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+	//and replace ReplaceblePrefixXML to xml. Otherwise, if xml attribute have name XML..., in output file it will be replaced to _XML...
+	resultXml = ops.GetValue().replace(/\sReplaceblePrefixXML_/g, &quot; XML_&quot;).replace(&quot;&lt;?xml version=\&quot;1.0\&quot; encoding=\&quot;UTF-8\&quot;?&gt;&quot;,&quot;&lt;?xml version=\&quot;1.0\&quot; encoding=\&quot;UTF-8\&quot;?&gt;\n&quot;);
+
+	if (fileName == &quot;&quot;) fileName = &quot;C:\\&quot; + ioName + &quot;.sif&quot;;
+	ips.Reset();
+	ips.SetProperty(&quot;FileName&quot;, fileName);
+	ips.SetProperty(&quot;CharSetConversion&quot;, &quot;UTF-8&quot;);
+	ips.SetProperty(&quot;IgnoreCharSetConvErrors&quot;, &quot;true&quot;)
+	ips.SetValue(resultXml);
+	TheApplication().GetService(&quot;EAI File Transport&quot;).InvokeMethod(&quot;Send&quot;, ips, ops);
+
+	/*outputFilePointer = Clib.fopen(fileName, &quot;w&quot;);
+	if (null == outputFilePointer)
+		TheApplication().RaiseErrorText(&quot;File &quot; + fileName + &quot; is not open&quot;);
+	Clib.fputs(resultXml, outputFilePointer);
+	Clib.fclose(outputFilePointer);*/
+	//outputFilePointer = null;
+
+	ps_REPOSITORY = ps_PROJECT = ps_IO = ips = ops = null;
+}"
+			   SEQUENCE="3"
+			   UPDATED_BY="VIF"
+			   CREATED_BY="VIF">
+			</BUSINESS_SERVICE_SERVER_SCRIPT>
+			<BUSINESS_SERVICE_SERVER_SCRIPT
+			   INACTIVE="N"
+			   NAME="FieldProcessing"
+			   PROGRAM_LANGUAGE="JS"
+			   SCRIPT="function FieldProcessing(psIC:PropertySet, psObj:PropertySet)
+{
+	var thisFunctionName = &quot;FieldProcessing&quot;;
+	var fldName = &quot;&quot;;
+	var fieldNewType = &quot;&quot;;
+	var psField:PropertySet;
+	var psObjCopy:PropertySet = psObj.Copy();
+	for (var i = 0; i &lt; psIC.GetChildCount(); i++) //loop by existing fields
+	{	
+		fldName = psIC.GetChild(i).GetProperty(&quot;NAME&quot;)
+		if(psObjCopy.PropertyExists(fldName))
+		{
+			fieldNewType = GetTypeField(psObjCopy.GetProperty(fldName));
+			switch (psIC.GetChild(i).GetProperty(&quot;PHYSICAL_DATA_TYPE&quot;)) //If in psIC field present - check if need update type
+			{
+				case &quot;DTYPE_INTEGER&quot;:
+					psIC.GetChild(i).SetProperty(&quot;PHYSICAL_DATA_TYPE&quot;, fieldNewType);
+				break;
+				case &quot;DTYPE_NUMBER&quot;:
+					if (fieldNewType != &quot;DTYPE_INTEGER&quot;)
+						psIC.GetChild(i).SetProperty(&quot;PHYSICAL_DATA_TYPE&quot;, fieldNewType);
+				break;
+				case &quot;DTYPE_TEXT&quot;:
+					// not changing type
+				break;
+					
+			}
+			psObjCopy.RemoveProperty(fldName); // for cancel processing this field
+		}
+	}
+	psField = TheApplication().NewPropertySet();
+	psField.SetType(&quot;INTEGRATION_COMPONENT_FIELD&quot;);
+	psField.SetProperty(&quot;FIELD_TYPE&quot;, &quot;Data&quot;);
+	psField.SetProperty(&quot;INACTIVE&quot;, &quot;N&quot;);
+	psField.SetProperty(&quot;ReplaceblePrefixXML_STYLE&quot;, &quot;Attribute&quot;);
+	psField.SetProperty(&quot;EXTERNAL_REQUIRED&quot;, &quot;N&quot;);
+
+	fldName = psObjCopy.GetFirstProperty();
+	while (fldName != &quot;&quot;) // add all absent fields
+	{
+		psField.SetProperty(&quot;EXTERNAL_NAME&quot;, fldName);
+		psField.SetProperty(&quot;NAME&quot;, fldName);
+		psField.SetProperty(&quot;PHYSICAL_DATA_TYPE&quot;, GetTypeField(psObj.GetProperty(fldName)))
+		psField.SetProperty(&quot;ReplaceblePrefixXML_TAG&quot;, fldName);
+		psIC.AddChild(psField.Copy());
+		fldName = psObjCopy.GetNextProperty();
+	}
+	psObjCopy = null;
+	// Short function actual for current (FieldProcessing) function only
+	function GetTypeField(fieldValue)
+	{
+		if (fieldValue == &quot;&quot;) return &quot;DTYPE_TEXT&quot;;
+		if (isNaN(Number(fieldValue))) return &quot;DTYPE_TEXT&quot;;
+		if (Number(fieldValue) == parseInt(fieldValue, 10) || fieldValue.indexOf(&quot;.&quot;) == -1) return &quot;DTYPE_INTEGER&quot;;
+		return &quot;DTYPE_NUMBER&quot;;
+	}
+}"
+			   SEQUENCE="4"
+			   UPDATED_BY="VIF"
+			   CREATED_BY="VIF">
+			</BUSINESS_SERVICE_SERVER_SCRIPT>
+			<BUSINESS_SERVICE_SERVER_SCRIPT
+			   INACTIVE="N"
+			   NAME="JsonToIo"
+			   PROGRAM_LANGUAGE="JS"
+			   SCRIPT="function JsonToIo(JsonString, IoName, SiebelMessage)
+{
+/*	var thisFunctionName = &quot;JsonToIo&quot;;
+WriteToLog(thisFunctionName, &quot;~~~&quot; + JsonString, true);
+	var ips:PropertySet;
+	var ops:PropertySet = TheApplication().NewPropertySet();
+	ips = TheApplication().NewPropertySet();
+	ips.SetValue(JsonString);
+	var hierName = &quot;Response&quot;;
+	this.InvokeMethod(&quot;JSONToPropSet&quot;, ips, ops);
+	//JSONToPropSet(ips, ops);
+
+	ips.Reset();
+	for (var i = 0; i &lt; ops.GetChildCount(); i++)
+		if(ops.GetChild(i).GetType() == &quot;SiebelMessage&quot;)
+		{
+			ops.GetChild(i).SetType(hierName);
+			ips.AddChild(ops.GetChild(i));
+			break;
+		}
+	ips.SetProperty(&quot;EscapeNames&quot;, &quot;false&quot;);
+	ips.SetProperty(&quot;Tags on Separate Lines&quot;, &quot;false&quot;);
+	TheApplication().GetService(&quot;&quot; + &quot;XML Converter (Data in Child PropSet)&quot;).InvokeMethod(&quot;PropSetToXML&quot;, ips, ops);
+
+	ips.Reset();
+	ips.SetProperty(&quot;IntObjectName&quot;, IoName);
+	ips.SetValue(ops.GetValue());
+	TheApplication().GetService(&quot;EAI XML Converter&quot;).InvokeMethod(&quot;XMLDocToIntObjHier&quot;, ips, ops)
+
+	WriteToLog(thisFunctionName, &quot;ops.GetChildCount = &quot; + ops.GetChildCount(), true);
+	*/
+
+}"
+			   SEQUENCE="5"
+			   UPDATED_BY="VIF"
+			   CREATED_BY="VIF">
+			</BUSINESS_SERVICE_SERVER_SCRIPT>
+			<BUSINESS_SERVICE_SERVER_SCRIPT
+			   INACTIVE="N"
+			   NAME="NewIntegrationComponent"
+			   PROGRAM_LANGUAGE="JS"
+			   SCRIPT="function NewIntegrationComponent(psIo:PropertySet, psObj:PropertySet, path, parentIcName, ExternalSequence)
+{
+	var thisFunctionName = &quot;NewIntegrationComponent&quot;;
+	var psIC: PropertySet;
+	var isPresentAppropriateIC = false;
+	var nameSuffix = 0;
+	var realName = &quot;&quot;;
+	var adapterInfo = &quot;&quot;;
+	psIC = TheApplication().NewPropertySet();
+	for (var i = 0; i &lt; psObj.GetChildCount(); i++)
+	{
+		adapterInfo = path + &quot;.&quot; + psObj.GetChild(i).GetType();
+		//WriteToLog(thisFunctionName, i + &quot;. adapterInfo = &quot; + adapterInfo, true);
+		for (var j = 0; j &lt; psIo.GetChildCount(); j++)
+			if (psIo.GetChild(j).GetProperty(&quot;NAME&quot;) == psObj.GetChild(i).GetType())
+				if (psIo.GetChild(j).GetProperty(&quot;ADAPTER_INFO&quot;) == adapterInfo)
+				{
+					psIo.GetChild(j).SetProperty(&quot;CARDINALITY&quot;, &quot;One or More&quot;);
+					FieldProcessing(psIC, psObj.GetChild(i));
+					isPresentAppropriateIC = true;
+					break;
+				}
+
+			if (!isPresentAppropriateIC)
+			{
+				realName = CalculateIcName(psIo, psObj.GetChild(i).GetType());
+
+				psIC = TheApplication().NewPropertySet();
+				psIo.AddChild(psIC);
+				psIC.SetType(&quot;INTEGRATION_COMPONENT&quot;);
+				psIC.SetProperty(&quot;ADAPTER_INFO&quot;, adapterInfo);
+				psIC.SetProperty(&quot;CARDINALITY&quot;, &quot;One&quot;);
+				psIC.SetProperty(&quot;EXTERNAL_NAME&quot;,realName);
+				psIC.SetProperty(&quot;NAME&quot;, realName);
+				psIC.SetProperty(&quot;ReplaceblePrefixXML_TAG&quot;, psObj.GetChild(i).GetType());
+				psIC.SetProperty(&quot;INACTIVE&quot;,&quot;N&quot;);
+				psIC.SetProperty(&quot;PARENT_INTEGRATION_COMPONENT&quot;, parentIcName);
+				psIC.SetProperty(&quot;EXTERNAL_SEQUENCE&quot;, ExternalSequence);
+				psIC.SetProperty(&quot;ReplaceblePrefixXML_SEQUENCE&quot;, ExternalSequence);
+
+				FieldProcessing(psIC, psObj.GetChild(i));
+
+				ExternalSequence += 10;
+				NewIntegrationComponent(psIo, psObj.GetChild(i), adapterInfo, realName, ExternalSequence);
+			}
+	}// end of for i
+
+}"
+			   SEQUENCE="6"
+			   UPDATED_BY="VIF"
+			   CREATED_BY="VIF">
+			</BUSINESS_SERVICE_SERVER_SCRIPT>
+			<BUSINESS_SERVICE_SERVER_SCRIPT
+			   INACTIVE="N"
+			   NAME="Service_InvokeMethod"
+			   PROGRAM_LANGUAGE="JS"
+			   SCRIPT="function Service_InvokeMethod (MethodName, Inputs, Outputs:PropertySet)
+{
+	/*var thisFunctionName = &quot;Service_InvokeMethod&quot;;
+	switch( MethodName )
+	{
+		case &quot;JSONToPropSet&quot;:
+		{
+			WriteToLog(thisFunctionName, &quot;Outputs.GetChild(0).GetType() = &apos;&quot; + Outputs.GetChild(0).GetType() + &quot;&apos;&quot;, true)
+			if (Outputs.GetChild(0).GetType() == &quot;&quot;)
+				Outputs.GetChild(0).SetType(&quot;SiebelMesage&quot;);
+			//TheApplication().GetService(&quot;General Utility Service&quot;).InvokeMethod(&quot;PrintPropertySet&quot;, Outputs.GetChild(0), TheApplication().NewPropertySet());
+			break;
+		}
+		default:
+		{
+			//TheApplication().GetService(&quot;General Utility Service&quot;).InvokeMethod(&quot;PrintPropertySet&quot;, Outputs.GetChild(0), TheApplication().NewPropertySet());
+			break;
+		}
+	}*/
+
+}"
+			   SEQUENCE="8"
+			   UPDATED_BY="VIF"
+			   CREATED_BY="VIF">
+			</BUSINESS_SERVICE_SERVER_SCRIPT>
+			<BUSINESS_SERVICE_SERVER_SCRIPT
+			   INACTIVE="N"
+			   NAME="Service_PreCanInvokeMethod"
+			   PROGRAM_LANGUAGE="JS"
+			   SCRIPT="function Service_PreCanInvokeMethod (MethodName, &amp;CanInvoke)
+{
+	return (ContinueOperation);
+}"
+			   SEQUENCE="9"
+			   UPDATED_BY="VIF"
+			   CREATED_BY="VIF">
+			</BUSINESS_SERVICE_SERVER_SCRIPT>
+			<BUSINESS_SERVICE_SERVER_SCRIPT
+			   INACTIVE="N"
+			   NAME="Service_PreInvokeMethod"
+			   PROGRAM_LANGUAGE="JS"
+			   SCRIPT="function Service_PreInvokeMethod (MethodName, Inputs:PropertySet, Outputs)
+{
+	switch (MethodName)
+	{
+		case &quot;CreateIO&quot;:
+			for(var i = 0; i &lt; Inputs.GetChildCount(); i++)
+				if (Inputs.GetChild(i).GetType() == &quot;SiebelMessage&quot;)
+				{
+					Inputs.GetChild(i).SetType(Inputs.GetProperty(&quot;External Name&quot;));
+					CreateIO(
+						Inputs.GetChild(i),
+						Inputs.GetProperty(&quot;Integration Object Name&quot;),
+						Inputs.GetProperty(&quot;External Name&quot;),
+						Inputs.GetProperty(&quot;Project Name&quot;),
+						Inputs.GetProperty(&quot;Save As&quot;)
+						);
+					break;
+				}
+			break;
+			//case &quot;JsonToIo&quot;:
+			//	JsonToIo(Inputs.GetValue(), /*Inputs.GetProperty(&quot;IoName&quot;)*/&quot;BumpYardObjectsRequestOutput&quot;, Outputs)
+			//break;
+	}
+}"
+			   SEQUENCE="10"
+			   UPDATED_BY="VIF"
+			   CREATED_BY="VIF">
+			</BUSINESS_SERVICE_SERVER_SCRIPT>
 			<BUSINESS_SERVICE_USER_PROP
 			   INACTIVE="N"
 			   NAME="@class"
 			   VALUE="EAIJSONConverter"
-			   UPDATED="11/01/2013 07:11:53"
-			   UPDATED_BY="SADMIN"
-			   CREATED="11/01/2013 07:11:53"
-			   CREATED_BY="SADMIN">
+			   UPDATED_BY="VIF"
+			   CREATED_BY="VIF">
 			</BUSINESS_SERVICE_USER_PROP>
 		</BUSINESS_SERVICE>
 	</PROJECT>
